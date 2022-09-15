@@ -1,6 +1,9 @@
 package com.br.adopt.pets.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -16,6 +19,9 @@ public class Adotante extends Cliente {
 	private String especie;
 	
 	private String porte;
+	
+	@OneToMany(mappedBy = "adotante")
+	private List<Pet> pet;
 
 	
 	public Adotante(Long id, String nome, String email, String telefone, String localizacao, String foto, String tipoPet,String especie, String porte) {
