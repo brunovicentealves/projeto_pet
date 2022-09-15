@@ -15,14 +15,14 @@ public class AnimalController {
 	
 	@RequestMapping(path = "/getAll", method = RequestMethod.GET)
     @ApiOperation(
-            value = "Get person by id",
+            value = "Get Animal by id",
             notes = "Returns person for id specified.")
 	public ResponseEntity<String> getAnimal(){
 		
-		return ResponseEntity.ok("Gato");
+		return ResponseEntity.notFound().build();
 		
-	}
 	
+	}
 	
 	
 	
