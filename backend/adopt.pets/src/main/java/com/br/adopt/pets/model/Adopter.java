@@ -17,8 +17,8 @@ public class Adopter extends Client {
 	
 	private String porte;
 	
-	@OneToMany(mappedBy = "adopter")
-	private List<Pet> pet;
+	@OneToMany(mappedBy = "id.adopter")
+	private List<AdopterPet> adopterPetList;
 
 	
 	public Adopter(Long id, String nome, String email, String telefone, String localizacao, String foto, String tipoPet,String especie, String porte) {
@@ -71,13 +71,7 @@ public class Adopter extends Client {
 		super();
 	}
 
-	public Adopter(String tipoPet, String especie, String porte, List<Pet> pet) {
-		super();
-		this.tipoPet = tipoPet;
-		this.especie = especie;
-		this.porte = porte;
-		this.pet = pet;
-	}
+	
 	
 	
 	
