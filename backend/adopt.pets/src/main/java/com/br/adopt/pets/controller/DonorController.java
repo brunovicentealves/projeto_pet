@@ -1,6 +1,6 @@
 package com.br.adopt.pets.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.adopt.pets.model.Donor;
+import com.br.adopt.pets.dtos.DonorCompletDTO;
+import com.br.adopt.pets.dtos.DonorDTO;
 import com.br.adopt.pets.service.DonorService;
 
 @RestController
@@ -23,41 +24,29 @@ public class DonorController {
     @Autowired
     private DonorService service;
     @GetMapping
-    public ArrayList<Donor> getAllDoador(){
-        return service.getDonorAll();
+    public ResponseEntity<List<DonorCompletDTO>> getAllDonor(){
+        return ResponseEntity.ok(service.getDonorAll());
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Donor> getById(@PathVariable Long id){
-        Donor res = service.getDonorById(id);
-
-        if(res != null){
-            return ResponseEntity.ok(res);
-        }
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<DonorCompletDTO> getDonorById(@PathVariable Long id){
+    	DonorCompletDTO res = service.getDonorById(id);
+        return ResponseEntity.ok(res);
     }
     @PostMapping
-    public ResponseEntity<Donor> addNew(@RequestBody Donor novo){
-        Donor res = service.addNewDonor(novo);
-
-        if(res != null){
+    public ResponseEntity<DonorCompletDTO> addNewDonor(@RequestBody DonorDTO novo){
+    	DonorCompletDTO res = service.addNewDonor(novo);
             return ResponseEntity.ok(res);
-        }
-        return ResponseEntity.badRequest().build();
-
+   
     }
-    @PutMapping
-    public ResponseEntity<Donor> changeCad(@RequestBody Donor dados){
-        Donor res = service.changeDonor(dados);
-
-        if(res != null){
+    @PutMapping("/{id}")
+    public ResponseEntity<DonorDTO> changeDonor(@RequestBody DonorDTO dados,@PathVariable Long id){
+    	DonorDTO res = service.changeDonor(dados,id);   
             return ResponseEntity.ok(res);
-        }
-        return ResponseEntity.badRequest().build();
     }
     @DeleteMapping
-    public ResponseEntity<Donor> deleteCad(@PathVariable Long id){
+    public ResponseEntity<String> deleteDonor(@PathVariable Long id){
         service.deleteDonor(id);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok("Deletado com Sucesso o Doador!");
     }
 
 }

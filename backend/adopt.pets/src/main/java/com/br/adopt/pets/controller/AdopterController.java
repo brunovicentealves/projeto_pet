@@ -26,8 +26,8 @@ public class AdopterController {
     private AdopterService service;
 
     @GetMapping
-    public List<AdopterCompletDTO> getAllAdotantes(){
-        return service.getAllAdopter();
+    public ResponseEntity<List<AdopterCompletDTO>> getAllAdopter(){
+        return ResponseEntity.ok(service.getAllAdopter());
     }
     @GetMapping("/{id}")
     public ResponseEntity<AdopterCompletDTO> getById(@PathVariable Long id){
@@ -36,13 +36,13 @@ public class AdopterController {
             return ResponseEntity.ok(res);
     }
     @PostMapping
-    public ResponseEntity<AdopterCompletDTO> addNew(@RequestBody AdopterDTO novo){
+    public ResponseEntity<AdopterCompletDTO> addNewAdopter(@RequestBody AdopterDTO novo){
     	AdopterCompletDTO res = service.addNewAdopter(novo);
             return ResponseEntity.ok(res);
    
     }
     @PutMapping("/{id}")
-    public ResponseEntity<AdopterDTO> changeCad(@RequestBody AdopterDTO dados ,@PathVariable Long id){
+    public ResponseEntity<AdopterDTO> changeAdopter(@RequestBody AdopterDTO dados ,@PathVariable Long id){
     	AdopterDTO res = service.changeAdopter(dados,id);
 
         if(res != null){
@@ -51,7 +51,7 @@ public class AdopterController {
         return ResponseEntity.badRequest().build();
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Adopter> deleteCad(@PathVariable Long id){
+    public ResponseEntity<Adopter> deleteAdopter(@PathVariable Long id){
         service.deleteAdopter(id);
         return ResponseEntity.ok(null);
     }

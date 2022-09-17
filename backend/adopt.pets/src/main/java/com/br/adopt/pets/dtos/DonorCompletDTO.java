@@ -9,31 +9,26 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DonorDTO {
-	
+public class DonorCompletDTO {
+
+	private Long id;
 	private String nome;
-	
+
 	private String email;
-	
+
 	private String telefone;
-	
+
 	private String localizacao;
-	
+
 	private String foto;
 
-	
-	
-	public DonorDTO(Donor donor) {
+	public DonorCompletDTO(Donor donor) {
+		this.id=donor.getId();
 		this.nome = donor.getNome();
 		this.email = donor.getEmail();
 		this.telefone = donor.getTelefone();
 		this.localizacao = donor.getLocalizacao();
 		this.foto = donor.getFoto();
 	}
-
-	
-	
-	
-	
 
 }
