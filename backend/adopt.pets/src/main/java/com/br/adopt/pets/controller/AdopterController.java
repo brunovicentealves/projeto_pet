@@ -26,7 +26,7 @@ public class AdopterController {
     private AdopterService service;
 
     @GetMapping
-    public List<AdopterDTO> getAllAdotantes(){
+    public List<AdopterCompletDTO> getAllAdotantes(){
         return service.getAllAdopter();
     }
     @GetMapping("/{id}")
@@ -36,7 +36,7 @@ public class AdopterController {
             return ResponseEntity.ok(res);
     }
     @PostMapping
-    public ResponseEntity<AdopterCompletDTO> addNew(@RequestBody Adopter novo){
+    public ResponseEntity<AdopterCompletDTO> addNew(@RequestBody AdopterDTO novo){
     	AdopterCompletDTO res = service.addNewAdopter(novo);
             return ResponseEntity.ok(res);
    

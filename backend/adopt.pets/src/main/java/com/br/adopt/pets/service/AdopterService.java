@@ -22,14 +22,14 @@ public class AdopterService {
 	@Autowired
 	private AdopterRepository repository;
 
-	public AdopterCompletDTO addNewAdopter(Adopter adopter){
+	public AdopterCompletDTO addNewAdopter(AdopterDTO adopter){
 		
 		log.info("criado usuario Adotante:{}",adopter);
 		
-			return new AdopterCompletDTO( repository.save(adopter));	
+			return new AdopterCompletDTO( repository.save(new Adopter(adopter)));	
 	}
 
-	public List<AdopterDTO> getAllAdopter(){
+	public List<AdopterCompletDTO> getAllAdopter(){
 		
 		log.info("Buscando todos usuarios adotantes");
 		
@@ -37,7 +37,7 @@ public class AdopterService {
 		
 		log.info("Buscando todos usuarios adotantes com sucesso");
 		
-		return list.stream().map(x ->new AdopterDTO(x)).collect(Collectors.toList());
+		return list.stream().map(x ->new AdopterCompletDTO(x)).collect(Collectors.toList());
 	}
 	
 	

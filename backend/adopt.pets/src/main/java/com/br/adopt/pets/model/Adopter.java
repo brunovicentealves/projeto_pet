@@ -35,6 +35,12 @@ public class Adopter extends Client {
 	}
 	
 	
+	public Adopter(AdopterDTO adopter) {
+		super(null, adopter.getNome(), adopter.getEmail(), adopter.getTelefone(), adopter.getLocalizacao(), adopter.getFoto());
+		
+	}
+	
+	
 	
 
 	public String getTipoPet() {
