@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Cliente {
+public abstract class Client {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

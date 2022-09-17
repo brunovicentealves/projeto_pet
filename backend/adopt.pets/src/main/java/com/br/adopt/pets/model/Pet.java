@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="tbPet")
+@Entity(name="tb_pet")
 public class Pet {
 	
 	
@@ -32,10 +32,10 @@ public class Pet {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idDoador")
-    private Doador doador;
+    private Donor donor;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idAdotante")
-    private Adotante adotante;
+    private Adopter adopter;
 
 }

@@ -5,14 +5,11 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.br.adopt.pets.dtos.AdopterDTO;
 
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity(name = "tb_adotante")
-public class Adotante extends Cliente {
+public class Adopter extends Client {
 	
 	private String tipoPet;
 	
@@ -20,16 +17,24 @@ public class Adotante extends Cliente {
 	
 	private String porte;
 	
-	@OneToMany(mappedBy = "adotante")
+	@OneToMany(mappedBy = "adopter")
 	private List<Pet> pet;
 
 	
-	public Adotante(Long id, String nome, String email, String telefone, String localizacao, String foto, String tipoPet,String especie, String porte) {
+	public Adopter(Long id, String nome, String email, String telefone, String localizacao, String foto, String tipoPet,String especie, String porte) {
 		super(id, nome, email, telefone, localizacao, foto);
 		this.tipoPet=tipoPet;
 		this.especie = especie;
 		this.porte=porte;
 	}
+	
+	
+	public Adopter(AdopterDTO adopter,Long id) {
+		super(id, adopter.getNome(), adopter.getEmail(), adopter.getTelefone(), adopter.getLocalizacao(), adopter.getFoto());
+		
+	}
+	
+	
 	
 
 	public String getTipoPet() {
@@ -54,6 +59,18 @@ public class Adotante extends Cliente {
 
 	public void setPorte(String porte) {
 		this.porte = porte;
+	}
+
+	public Adopter() {
+		super();
+	}
+
+	public Adopter(String tipoPet, String especie, String porte, List<Pet> pet) {
+		super();
+		this.tipoPet = tipoPet;
+		this.especie = especie;
+		this.porte = porte;
+		this.pet = pet;
 	}
 	
 	
