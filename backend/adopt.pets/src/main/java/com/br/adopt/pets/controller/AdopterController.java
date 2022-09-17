@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.br.adopt.pets.dtos.AdopterCompletDTO;
 import com.br.adopt.pets.dtos.AdopterDTO;
-import com.br.adopt.pets.model.Adopter;
 import com.br.adopt.pets.service.AdopterService;
 
 @RestController
@@ -51,9 +50,9 @@ public class AdopterController {
         return ResponseEntity.badRequest().build();
     }
     @DeleteMapping("/{id}")
-    public ResponseEntity<Adopter> deleteAdopter(@PathVariable Long id){
+    public ResponseEntity<String> deleteAdopter(@PathVariable Long id){
         service.deleteAdopter(id);
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok("Deletado com sucesso Usuario Adotante");
     }
 
 }

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.br.adopt.pets.dtos.PetDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,7 @@ public class Pet {
 	private String foto;
 	private String vacinado;
 	
+
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idDoador")
     private Donor donor;
@@ -37,5 +40,19 @@ public class Pet {
 	@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idAdotante")
     private Adopter adopter;
+	
+	
+	
+	public Pet( PetDTO pet) {
+		super();
+		this.nome = pet.getNome();
+		this.idade = pet.getIdade();
+		this.tipoPet = pet.getTipoPet();
+		this.porte = pet.getPorte();
+		this.ambiente = pet.getAmbiente();
+		this.foto = pet.getFoto();
+		this.vacinado = pet.getVacinado();
+	}
+	
 
 }
