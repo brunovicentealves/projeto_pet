@@ -29,6 +29,8 @@ public class Pet {
 	private Long id;
 	private String nome;
 	private Integer idade;
+	private String cor;
+	private String especie;
 	private String tipoPet;
 	private String porte;
 	private String ambiente;
@@ -49,6 +51,8 @@ public class Pet {
 		super();
 		this.nome = pet.getNome();
 		this.idade = pet.getIdade();
+		this.cor=pet.getCor();
+		this.especie=pet.getEspecie();
 		this.tipoPet = pet.getTipoPet();
 		this.porte = pet.getPorte();
 		this.ambiente = pet.getAmbiente();

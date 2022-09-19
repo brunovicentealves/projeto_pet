@@ -25,6 +25,7 @@ public class PetCompletDTO {
 	
 	public PetCompletDTO( Pet pet) {
 		super();
+		this.id=pet.getId();
 		this.nome = pet.getNome();
 		this.idade = pet.getIdade();
 		this.tipoPet = pet.getTipoPet();

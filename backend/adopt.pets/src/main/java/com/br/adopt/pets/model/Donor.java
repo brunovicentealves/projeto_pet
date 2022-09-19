@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import com.br.adopt.pets.dtos.DonorDTO;
 
 
-@Entity
+@Entity(name = "tb_donor")
 public class Donor extends Client {
 	
 	@OneToMany(mappedBy = "donor")
