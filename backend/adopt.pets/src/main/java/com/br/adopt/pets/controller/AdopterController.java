@@ -2,6 +2,8 @@ package com.br.adopt.pets.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,8 @@ import com.br.adopt.pets.dtos.AdopterCompletDTO;
 import com.br.adopt.pets.dtos.AdopterDTO;
 import com.br.adopt.pets.dtos.AdopterPreferencesDTO;
 import com.br.adopt.pets.service.AdopterService;
+
+
 
 @RestController
 @RequestMapping("/api/v1/adopter")
@@ -38,13 +42,13 @@ public class AdopterController {
 		return ResponseEntity.ok(res);
 	}
 
-	@PostMapping
-    public ResponseEntity<AdopterCompletDTO> addNewAdopter(@RequestBody AdopterDTO novo){
+	@PostMapping(consumes = "application/json")
+    public ResponseEntity<AdopterCompletDTO> addNewAdopter( @RequestBody @Valid AdopterDTO novo){
     	AdopterCompletDTO res = service.addNewAdopter(novo);
             return ResponseEntity.ok(res);
 	}
 
-	@PatchMapping("/{id}")
+	@PatchMapping("/{id}" )
 	public ResponseEntity<String> addAdopterPreferences(@RequestBody AdopterPreferencesDTO preferences ,@PathVariable Long id ) {
 		 service.AdopterPreferences(preferences,id);
 		return ResponseEntity.ok("Adcionado as preferencias para adotante ");

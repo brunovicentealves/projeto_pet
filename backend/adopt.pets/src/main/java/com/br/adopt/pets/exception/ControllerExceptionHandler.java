@@ -38,11 +38,11 @@ public class ControllerExceptionHandler {
   
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
-  public ResponseEntity<ErrorMessage> resourceNotValidException(ResourceBadRequestException ex, WebRequest request) {
+  public ResponseEntity<ErrorMessage> resourceNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
     ErrorMessage message = new ErrorMessage(
         HttpStatus.BAD_REQUEST.value(),
         new Date(),
-        ex.getMessage(),
+        ex.getBindingResult().getAllErrors().get(0).getDefaultMessage(),
         request.getDescription(false));
     
     return new ResponseEntity<ErrorMessage>(message, HttpStatus.BAD_REQUEST);

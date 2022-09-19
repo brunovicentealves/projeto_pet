@@ -2,6 +2,8 @@ package com.br.adopt.pets.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -33,13 +35,13 @@ public class DonorController {
         return ResponseEntity.ok(res);
     }
     @PostMapping
-    public ResponseEntity<DonorCompletDTO> addNewDonor(@RequestBody DonorDTO novo){
+    public ResponseEntity<DonorCompletDTO> addNewDonor(@RequestBody @Valid DonorDTO novo){
     	DonorCompletDTO res = service.addNewDonor(novo);
             return ResponseEntity.ok(res);
    
     }
     @PutMapping("/{id}")
-    public ResponseEntity<DonorDTO> changeDonor(@RequestBody DonorDTO dados,@PathVariable Long id){
+    public ResponseEntity<DonorDTO> changeDonor(@RequestBody @Valid DonorDTO dados,@PathVariable Long id){
     	DonorDTO res = service.changeDonor(dados,id);   
             return ResponseEntity.ok(res);
     }

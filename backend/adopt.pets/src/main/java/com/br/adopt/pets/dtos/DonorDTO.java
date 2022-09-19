@@ -1,5 +1,9 @@
 package com.br.adopt.pets.dtos;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.br.adopt.pets.model.Donor;
 
 import lombok.AllArgsConstructor;
@@ -11,10 +15,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DonorDTO {
 	
+	
+	@NotBlank(message = "Nome invalido!")
 	private String nome;
 	
+	@Email(message = "Email invalido!")
 	private String email;
 	
+	@Size(min = 11,max=14,message="Excedeu tamanho do numero do telefone do Adotante")
 	private String telefone;
 	
 	private String localizacao;

@@ -3,6 +3,8 @@ package com.br.adopt.pets.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,13 +37,13 @@ public class PetController {
             return ResponseEntity.ok(res);
     }
     @PostMapping
-    public ResponseEntity<PetCompletDTO> addNewPet(@RequestBody PetDTO novo){
+    public ResponseEntity<PetCompletDTO> addNewPet(@RequestBody @Valid PetDTO novo){
     	PetCompletDTO res = service.addNewPet(novo);
 
             return ResponseEntity.ok(res);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<PetDTO> changePet(@RequestBody PetDTO dados,@PathVariable Long id){
+    public ResponseEntity<PetDTO> changePet(@RequestBody @Valid PetDTO dados,@PathVariable Long id){
     	PetDTO res = service.changePet(dados,id);
             return ResponseEntity.ok(res);
        
