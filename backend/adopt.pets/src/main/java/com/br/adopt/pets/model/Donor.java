@@ -9,7 +9,7 @@ import com.br.adopt.pets.dtos.DonorCompletDTO;
 import com.br.adopt.pets.dtos.DonorDTO;
 
 
-@Entity(name = "tb_donor")
+@Entity(name = "tb_doador")
 public class Donor extends Client {
 	
 	@OneToMany(mappedBy = "donor")

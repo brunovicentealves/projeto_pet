@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.br.adopt.pets.dtos.DonorCompletDTO;
 import com.br.adopt.pets.dtos.PetCompletDTO;
 import com.br.adopt.pets.dtos.PetDTO;
 
@@ -65,6 +64,7 @@ public class Pet {
 	
 	public Pet( PetCompletDTO pet) {
 		super();
+		this.id=pet.getId();
 		this.nome = pet.getNome();
 		this.idade = pet.getIdade();
 		this.tipoPet = pet.getTipoPet();

@@ -1,8 +1,14 @@
 package com.br.adopt.pets.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.br.adopt.pets.dtos.AdopterCompletDTO;
+import com.br.adopt.pets.exception.ResourceBadRequestException;
 import com.br.adopt.pets.model.Adopter;
 import com.br.adopt.pets.model.AdopterPet;
 import com.br.adopt.pets.model.AdopterPetId;
@@ -24,7 +30,7 @@ public class MatchService {
 	private DonorService donorService;
 
 	@Autowired
-	private AdopterPetRepository adopeterPetRespository;
+	private AdopterPetRepository adopterPetRespository;
 
 	@Autowired
 	private PetRepository petRepository;
@@ -38,10 +44,11 @@ public class MatchService {
 
 		AdopterPetId id = new AdopterPetId(new Adopter(adopterService.getAdopterById(idAdopter)),
 				new Pet(petService.getPetById(idPet)));
-
+		
 		AdopterPet adopterPet = new AdopterPet(id, StatusPet.INTENCAO);
 
-		adopeterPetRespository.save(adopterPet);
+		adopterPetRespository.save(adopterPet);
+		
 
 		log.info("O adotante Id:{} Registrou intenção de adoção no pet id:{} com Sucesso", idAdopter, idPet);
 
@@ -57,14 +64,32 @@ public class MatchService {
 		Pet pet = petRepository.findByIdDonor(idDonor);
 
 		AdopterPetId id = new AdopterPetId(new Adopter(adopterService.getAdopterById(idAdopter)),pet);
+		
+		Optional<AdopterPet> optionalAdopterPet	= adopterPetRespository.findById(id);
+		
+		if(optionalAdopterPet.isEmpty()) {
+			throw new ResourceBadRequestException("Adotante id: "+idAdopter+" não manifestou interesse ainda pelo seu pet,entao não pode Doar para ele !");
+		}
 
-		AdopterPet adopterPet = new AdopterPet(id, StatusPet.DOADO);
+		AdopterPet adopterPet = optionalAdopterPet.get();
+		
+		adopterPet.setStatus(StatusPet.DOADO);
 
-		adopeterPetRespository.save(adopterPet);
+		adopterPetRespository.save(adopterPet);
 
 		log.info("Doador id:{} duou pet para Adotante id:{} com sucesso ", idAdopter, pet);
 
 		return "Pet Adotando com Sucesso";
 	}
+	
+	
+	public List<AdopterCompletDTO> lookForSuitorsForAdoption(Long idDonor) {
+
+		List<Adopter> adopterList=adopterPetRespository.getAdopterIntentionAdoptionPet();
+
+		return  adopterList.stream().map(x -> new AdopterCompletDTO(x)).collect(Collectors.toList());
+	}
+	
+	
 
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "tb_adopter_Pet")
+@Entity(name = "tb_adotante_pet")
 public class AdopterPet {
 	
 	@EmbeddedId
