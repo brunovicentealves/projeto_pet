@@ -32,11 +32,11 @@ public class PetService {
 	@Autowired
 	private DonorService donorService;
 
-	public PetCompletDTO addNewPet(PetDTO novo) {
+	public PetCompletDTO addNewPet(PetDTO novo,Long idDonor) {
 
 		log.info("criado usuario Pet:{}", novo);
 		
-		DonorCompletDTO donorDto=donorService.getDonorById(2L);
+		DonorCompletDTO donorDto=donorService.getDonorById(idDonor);
 		
 		return new PetCompletDTO(repository.save(new Pet(novo, new Donor(donorDto))));
 

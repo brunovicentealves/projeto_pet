@@ -18,10 +18,18 @@ public class MatchController {
 	private MatchService service;
 	
 	
-	@PostMapping
+	
+	@PostMapping("/intention")
     public ResponseEntity<String> petAdoptioniIntention(@RequestParam Long adopterId , @RequestParam Long petId){
 	
         return ResponseEntity.ok(service.petAdoptionIntention(adopterId, petId));
+    }
+	
+	
+	@PostMapping
+    public ResponseEntity<String> matchAdoptionBetweenAdopterAndPet(@RequestParam Long adopterId , @RequestParam Long idDonor){
+	
+        return ResponseEntity.ok(service.matchAdoptionBetweenAdopterAndPet(adopterId, idDonor));
     }
 	
 	

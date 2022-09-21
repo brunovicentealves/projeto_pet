@@ -2,6 +2,6 @@ package com.br.adopt.pets.util;
 
 public enum StatusPet {
 	
-	DOADO,REJEITADO
+	DOADO,INTENCAO,REJEITADO
 
 }
