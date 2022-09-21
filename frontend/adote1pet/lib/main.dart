@@ -1,3 +1,4 @@
+import 'package:adote1pet/_model/cadastro.dart';
 import 'package:adote1pet/home.dart';
 import 'package:adote1pet/login.dart';
 import 'package:flutter/material.dart';
