@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.br.adopt.pets.dtos.DonorCompletDTO;
 import com.br.adopt.pets.dtos.DonorDTO;
 
 
@@ -28,6 +29,12 @@ public class Donor extends Client {
 	
 	public Donor(DonorDTO dto) {
 		super(null, dto.getNome(), dto.getEmail(), dto.getTelefone(),dto.getLocalizacao(),dto.getFoto());
+		
+	}
+	
+	
+	public Donor(DonorCompletDTO dto) {
+		super(dto.getId(), dto.getNome(), dto.getEmail(), dto.getTelefone(),dto.getLocalizacao(),dto.getFoto());
 		
 	}
 

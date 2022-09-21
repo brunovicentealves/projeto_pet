@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 
 import com.br.adopt.pets.util.StatusPet;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "tb_adopter_Pet")
 public class AdopterPet {
 	

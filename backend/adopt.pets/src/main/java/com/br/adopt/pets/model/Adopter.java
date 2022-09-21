@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.br.adopt.pets.dtos.AdopterCompletDTO;
 import com.br.adopt.pets.dtos.AdopterDTO;
 
 
@@ -37,6 +38,11 @@ public class Adopter extends Client {
 	
 	public Adopter(AdopterDTO adopter) {
 		super(null, adopter.getNome(), adopter.getEmail(), adopter.getTelefone(), adopter.getLocalizacao(), adopter.getFoto());
+		
+	}
+	
+	public Adopter(AdopterCompletDTO adopter) {
+		super(adopter.getId(), adopter.getNome(), adopter.getEmail(), adopter.getTelefone(), adopter.getLocalizacao(), adopter.getFoto());
 		
 	}
 	

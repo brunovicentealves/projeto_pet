@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.br.adopt.pets.dtos.AdopterPreferencesDTO;
+import com.br.adopt.pets.dtos.DonorCompletDTO;
 import com.br.adopt.pets.dtos.PetCompletDTO;
 import com.br.adopt.pets.dtos.PetDTO;
 import com.br.adopt.pets.exception.ResourceBadRequestException;
 import com.br.adopt.pets.exception.ResourceNotFoundException;
+import com.br.adopt.pets.model.Donor;
 import com.br.adopt.pets.model.Pet;
 import com.br.adopt.pets.repository.PetRepository;
 
@@ -25,12 +27,18 @@ public class PetService {
 
 	@Autowired
 	private AdopterService adopterService;
+	
+	
+	@Autowired
+	private DonorService donorService;
 
 	public PetCompletDTO addNewPet(PetDTO novo) {
 
 		log.info("criado usuario Pet:{}", novo);
-
-		return new PetCompletDTO(repository.save(new Pet(novo)));
+		
+		DonorCompletDTO donorDto=donorService.getDonorById(2L);
+		
+		return new PetCompletDTO(repository.save(new Pet(novo, new Donor(donorDto))));
 
 	}
 

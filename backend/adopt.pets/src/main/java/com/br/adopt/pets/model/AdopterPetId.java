@@ -25,9 +25,7 @@ public class AdopterPetId  implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Pet pet;
 
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(adopter, pet);
@@ -43,6 +41,19 @@ public class AdopterPetId  implements Serializable {
 			return false;
 		AdopterPetId other = (AdopterPetId) obj;
 		return Objects.equals(adopter, other.adopter) && Objects.equals(pet, other.pet);
+	}
+	
+	
+	
+
+	public AdopterPetId(Adopter adopter, Pet pet) {
+		super();
+		this.adopter = adopter;
+		this.pet = pet;
+	}
+
+	public AdopterPetId() {
+		super();
 	}
 	
 	
