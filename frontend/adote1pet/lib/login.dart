@@ -30,7 +30,9 @@ class _LoginScreen extends State<LoginScreen> {
         child: MaterialButton(
           minWidth: MediaQuery.of(context).size.width,
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/cadastro');
+          },
           child: Text("Login",
               textAlign: TextAlign.center,
               style: TextStyle(
