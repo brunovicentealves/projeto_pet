@@ -3,6 +3,8 @@ Projeto adoção de pet
 
 Utilizamos no projeto o H2 como banco e swagger para expor os endpoints
 
+### Kamban -> https://trello.com/b/yW6BCb6n/projeto-pet
+
 #### Acesso local com o swagger: http://localhost:8081/swagger-ui.html
 
 #### adopter-controller
