@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.br.adopt.pets.dtos.AdopterCompletDTO;
 import com.br.adopt.pets.service.MatchService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/pet/match")
 public class MatchController {
@@ -22,14 +24,14 @@ public class MatchController {
 	private MatchService service;
 	
 	
-	
+	@ApiOperation(value = "Manifestando a intenção de adoção do pet ")
 	@PostMapping("/intention")
     public ResponseEntity<String> petAdoptioniIntention(@RequestParam Long adopterId , @RequestParam Long petId){
 	
         return ResponseEntity.ok(service.petAdoptionIntention(adopterId, petId));
     }
 	
-	
+	@ApiOperation(value = "Realizando match de adoção  entre doador e adotante ")
 	@PostMapping
     public ResponseEntity<String> matchAdoptionBetweenAdopterAndPet(@RequestParam Long adopterId , @RequestParam Long idDonor){
 	
@@ -37,7 +39,7 @@ public class MatchController {
     }
 	
 	
-	
+	@ApiOperation(value = "Buscando lista de Adotantes que manifestaram interesse no pet do doador ")
 	@GetMapping
     public ResponseEntity<List<AdopterCompletDTO>> matchAdoptionBetweenAdopterAndPet( @RequestParam Long idDonor){
 	

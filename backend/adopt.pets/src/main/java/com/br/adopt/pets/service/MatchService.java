@@ -85,7 +85,7 @@ public class MatchService {
 	
 	public List<AdopterCompletDTO> lookForSuitorsForAdoption(Long idDonor) {
 
-		List<Adopter> adopterList=adopterPetRespository.getAdopterIntentionAdoptionPet();
+		List<Adopter> adopterList=adopterPetRespository.getAdopterIntentionAdoptionPet(idDonor);
 
 		return  adopterList.stream().map(x -> new AdopterCompletDTO(x)).collect(Collectors.toList());
 	}

@@ -1,19 +1,24 @@
 package com.br.adopt.pets.controller;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Component
 public class EmailController {
 
 
   @Autowired
   private JavaMailSender mailSender;
+
 
   @RequestMapping(path = "/email-send", method = RequestMethod.GET)
   public String sendMail() {

@@ -21,6 +21,8 @@ import com.br.adopt.pets.dtos.AdopterDTO;
 import com.br.adopt.pets.dtos.AdopterPreferencesDTO;
 import com.br.adopt.pets.service.AdopterService;
 
+import io.swagger.annotations.ApiOperation;
+
 
 
 @RestController
@@ -30,11 +32,15 @@ public class AdopterController {
 	@Autowired
 	private AdopterService service;
 
+	
+	@ApiOperation(value = "Retorna uma lista de Adotantes")
 	@GetMapping
 	public ResponseEntity<List<AdopterCompletDTO>> getAllAdopter() {
 		return ResponseEntity.ok(service.getAllAdopter());
 	}
 
+	
+	@ApiOperation(value = "Retorna um Adotante pelo Id")
 	@GetMapping("/{id}")
 	public ResponseEntity<AdopterCompletDTO> getById(@PathVariable Long id) {
 
@@ -42,12 +48,16 @@ public class AdopterController {
 		return ResponseEntity.ok(res);
 	}
 
+	
+	@ApiOperation(value = "Adciona uma adotante novo")
 	@PostMapping(consumes = "application/json")
     public ResponseEntity<AdopterCompletDTO> addNewAdopter( @RequestBody @Valid AdopterDTO novo){
     	AdopterCompletDTO res = service.addNewAdopter(novo);
             return ResponseEntity.ok(res);
 	}
 
+	
+	@ApiOperation(value = "Adciona as preferencias de um adotante especifico")
 	@PatchMapping("/{id}" )
 	public ResponseEntity<String> addAdopterPreferences(@RequestBody AdopterPreferencesDTO preferences ,@PathVariable Long id ) {
 		 service.AdopterPreferences(preferences,id);
@@ -56,6 +66,7 @@ public class AdopterController {
 	}
 	
 	
+	@ApiOperation(value = "Busca as preferencias de um adotante especifico")
 	@GetMapping("/preferences/{id}")
 	public ResponseEntity<AdopterPreferencesDTO> getByIdAdopterPreferences(@PathVariable Long id) {
 
@@ -63,6 +74,7 @@ public class AdopterController {
 		return ResponseEntity.ok(res);
 	}
 
+	@ApiOperation(value = "Realiza as alteração da informações de um adotante ")
 	@PutMapping("/{id}")
 	public ResponseEntity<AdopterDTO> changeAdopter(@RequestBody AdopterDTO dados, @PathVariable Long id) {
 		AdopterDTO res = service.changeAdopter(dados, id);
@@ -73,6 +85,8 @@ public class AdopterController {
 		return ResponseEntity.badRequest().build();
 	}
 
+	
+	@ApiOperation(value = "Realiza Delete de um adotante")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteAdopter(@PathVariable Long id) {
 		service.deleteAdopter(id);
